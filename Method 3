@@ -1,0 +1,55 @@
+// C++ program to print common elements in three arrays
+#include <bits/stdc++.h>
+using namespace std;
+
+void findCommon(int a[], int b[], int c[], int n1, int n2,int n3)
+{
+  // three sets to maintain frequency of elements
+  unordered_set <int> uset,uset2,uset3;
+  for(int i=0;i<n1;i++){
+     uset.insert(a[i]);
+  }
+  for(int i=0;i<n2;i++){
+     uset2.insert(b[i]);
+  }
+
+  // checking if elements of 3rd array are present in first 2 sets
+  for(int i=0;i<n3;i++){
+    if(uset.find(c[i])!=uset.end() && uset2.find(c[i])!=uset.end()){
+    // using a 3rd set to prevent duplicates
+    if(uset3.find(c[i])==uset3.end())
+      cout<<c[i]<<" ";
+      uset3.insert(c[i]);
+    }
+  } 
+}
+
+// Driver code
+int main()
+{
+   int n1;
+   cin>>n1;
+
+   int ar1[n1];
+   for(int i=0; i<n1; i++) 
+    cin>>ar1[i];
+
+   int n2;
+   cin>>n2;
+
+   int ar2[n2];
+   for(int i=0; i<n2; i++) 
+    cin>>ar2[i];
+
+   int n3;
+   cin>>n3;
+
+   int ar3[n3];
+   for(int i=0; i<n3; i++) 
+     cin>>ar3[i];
+
+   cout<<"Common Elements are ";
+
+   findCommon(ar1, ar2, ar3, n1, n2, n3);
+   return 0;
+}
